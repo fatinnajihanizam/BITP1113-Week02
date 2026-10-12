@@ -1,0 +1,60 @@
+# Streaming Data Usage - Design
+Name: ______ Matric No: ______ Section: ______
+
+## Step 1: Analysis
+Input : bitrateMbps , minutes
+Process :
+- Convert minutes to total seconds (seconds = minutes * 60)
+- Calculate total megabits (megabits = bitrateMbps * second)
+- Convert megabits to megabytes (megabytes = megabits / 8)
+- Convert megabytes to gigabytes (gigabytes = megabytes / 1024) 
+Output : totalMB, totalGB
+
+Structure chart (module names and jobs):
+main -> inputBitrate {...}, inputMinutes {...}, computeDataMB {...}, display {...}
+
+## Step 2: Design
+### Pseudocode
+main
+	CALL inputBitrate RETURNING bitrateMbps
+	CALL inputMinutes RETURNING minutes
+	CALL computeDataMB with bitrateMbps, minutes RETURNING totalMB, totalGB
+	CALL display with totalMB, totalGB
+ 
+inputBitrate
+    PROMPT "Enter bitrate (Mbps): "
+    READ bitrateMbps
+    RETURN bitrateMbps
+
+inputMinutes
+    PROMPT "Enter duration (minutes): "
+    READ minutes
+    RETURN minutes
+
+computeDataMB with bitrateMbps and minutes
+	seconds = minutes * 60
+	megabits = bitrateMbps * seconds
+	totalMB  = megabits / 8
+	totalGB = totalMB / 1024
+	RETURN totalMB, totalGB
+
+display (totalMB, totalGB)
+	PRINT "Total Data Used: ", totalMB, " MB "
+	PRINT "Total Data Used: ", totalGB, " GB "
+
+### Flowchart
+See StreamingData_flowchart.png
+
+### Desk-check
+| Test | bitrateMbps | minutes | seconds | dataMb | dataMB | dataGB |
+|------|-------------|---------|---------|--------|--------|--------|
+| 1    | 2.5 	     | 90      |         |        | 	   | 	    |
+| 2    |             | 	       | 	 | 	  | 	   |	    |
+| 3    | 0 	     | 60      |         | 	  |	   | 	    |
+
+## Step 4: Testing
+| Test | Expected (MB / GB) | Actual output | Pass? |
+|------|--------------------|---------------|-------|
+| 1    | 		    |		    | 	    |
+| 2    | 		    | 		    |       |
+| 3    |		    | 		    | 	    |
